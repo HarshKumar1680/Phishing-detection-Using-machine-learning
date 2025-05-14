@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced Phishing URL Detection using Machine Learning - Protect yourself from malicious websites">
+    <meta name="keywords" content="phishing detection, cybersecurity, machine learning, URL analysis, web security, AI security">
+    <meta name="author" content="Harsh Kumar">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link href="static/styles.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <title>Phishing URL Detection | AI-Powered Security</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header animate-fade-in">
+            <h1><i class="fas fa-shield-alt"></i> Phishing URL Detection</h1>
+            <p>Protect yourself from malicious websites using our advanced machine learning-powered URL analysis system</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content animate-fade-in">
+            <div class="form">
+                <form action="/" method="post">
+                    <div class="form__group">
+                        <input type="text" class="form__input" name="url" id="url" placeholder="Enter URL to analyze" required>
+                        <label for="url" class="form__label">URL to Check</label>
+                    </div>
+                    <button class="button" type="submit">
+                        <i class="fas fa-search-shield"></i> Analyze URL
+                    </button>
+                </form>
+
+                {% if error %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> {{ error }}
+                </div>
+                {% endif %}
+
+                {% if url %}
+                <div class="results animate-fade-in">
+                    <h3>Analysis Results for:</h3>
+                    <p class="url-display"><a href="{{ url }}" target="_blank">{{ url }}</a></p>
+                    
+                    {% if prediction %}
+                        {% if prediction == "SAFE" %}
+                        <div class="safe">
+                            <i class="fas fa-check-circle fa-3x mb-3"></i>
+                            <h3>SAFE</h3>
+                            <p>This URL appears to be legitimate with {{ probability }}% confidence</p>
+                            <button class="button button1" onclick="window.open('{{url}}')" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </button>
+                        </div>
+                        {% else %}
+                        <div class="unsafe">
+                            <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                            <h3>UNSAFE</h3>
+                            <p>This URL appears to be malicious with {{ probability }}% confidence</p>
+                            <button class="button button2" onclick="window.open('{{url}}')" target="_blank">
+                                <i class="fas fa-exclamation-circle"></i> Proceed at Your Own Risk
+                            </button>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </main>
+
+        <!-- Features Section -->
+        <section class="features animate-fade-in">
+            <div class="feature-card">
+                <i class="fas fa-robot fa-2x mb-3"></i>
+                <h3>AI-Powered Analysis</h3>
+                <p>Advanced machine learning algorithms analyze 30+ different features to detect phishing URLs</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bolt fa-2x mb-3"></i>
+                <h3>Real-Time Detection</h3>
+                <p>Get instant results about the safety of any URL before visiting the website</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-virus fa-2x mb-3"></i>
+                <h3>Comprehensive Protection</h3>
+                <p>Checks for suspicious patterns, domain age, SSL certificates, and more</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 Phishing URL Detection | Developed by Harsh Kumar</p>
+            <p>
+                <a href="https://github.com/yourusername/phishing-detection" target="_blank" class="text-white">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
